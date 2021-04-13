@@ -1,7 +1,9 @@
---UC 5 : Ability to retrieve salary data for a particular employee as well as employees who joined in a particular date range
+--UC 6 : Ability to add gender to employee payroll table and update rows to display correct emp gender
 
- use payroll_services;
- --Retrieve salary data for employee Teressa
- select EmpId,EmpName,Salary from employee_payroll where EmpName='Teressa';
- --Retrieve data of employees who joined in the given data range
- select * from employee_payroll where StartDate between cast('2020-01-01' as date) and cast(getdate() as date);;
+use payroll_services;
+select * from employee_payroll;
+-- Alter the table to add new colulmn
+alter table employee_payroll add Gender char(1);
+--Update the newly created column
+update employee_payroll set Gender='M' where EmpName ='Tony' or EmpName ='Steve Rogers' or EmpName ='Nick Fury';
+update employee_payroll set Gender='F' where EmpName ='Teressa';
