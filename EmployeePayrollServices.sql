@@ -1,12 +1,9 @@
---UC 7 : Ability to find sum, average, min salary, max salary and number of male and female employees
+--UC 8 : Ability to extend employee_payroll data to store employee information like employee phone, address and department
 
 use payroll_services;
 select * from employee_payroll;
---Ability to find sum, average, min salary, max salary and number of male and female employees
-select Gender,
-count(salary) as EmpCount,
-min(salary) as MinSalary,
-max(salary) as MaxSalary,
-sum(salary) as SalarySum,
-avg(salary) as AvgSalary
-from employee_payroll where Gender='M' or Gender='F' group by Gender;
+--Adding new columns
+alter table employee_payroll add 
+PhoneNo bigint,
+Address varchar(600) not null default 'ADDRESS NOT AVAILABLE',
+Department varchar(500) not null default 'DEPARTMENT NOT AVAILABLE';
