@@ -1,9 +1,12 @@
---UC 6 : Ability to add gender to employee payroll table and update rows to display correct emp gender
+--UC 7 : Ability to find sum, average, min salary, max salary and number of male and female employees
 
 use payroll_services;
 select * from employee_payroll;
--- Alter the table to add new colulmn
-alter table employee_payroll add Gender char(1);
---Update the newly created column
-update employee_payroll set Gender='M' where EmpName ='Tony' or EmpName ='Steve Rogers' or EmpName ='Nick Fury';
-update employee_payroll set Gender='F' where EmpName ='Teressa';
+--Ability to find sum, average, min salary, max salary and number of male and female employees
+select Gender,
+count(salary) as EmpCount,
+min(salary) as MinSalary,
+max(salary) as MaxSalary,
+sum(salary) as SalarySum,
+avg(salary) as AvgSalary
+from employee_payroll where Gender='M' or Gender='F' group by Gender;
